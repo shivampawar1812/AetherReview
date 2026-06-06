@@ -1,5 +1,6 @@
 from fastapi import APIRouter, UploadFile, File
 from services.file_service import save_pdf
+from services.parser import extract_sections
 
 router = APIRouter(
     prefix="/upload",
@@ -10,10 +11,16 @@ router = APIRouter(
 async def upload_paper(
     file: UploadFile = File(...)
 ):
-    result = save_pdf(file)
+    saved = save_pdf(file)
+
+    parsed = extract_sections(
+        saved["path"]
+    )
 
     return {
-        "paper_id": result["paper_id"],
-        "filename": result["filename"],
-        "status": "uploaded"
+        "paper_id": saved["paper_id"],
+        "filename": saved["filename"],
+        "title": parsed["title"],
+        "abstract": parsed["abstract"],
+        "conclusion": parsed["conclusion"]
     }
