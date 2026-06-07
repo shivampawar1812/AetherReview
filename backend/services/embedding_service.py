@@ -5,6 +5,7 @@ model = SentenceTransformer(
 )
 
 
+
 def generate_embedding(text):
     """
     Convert text into vector embedding.
@@ -16,3 +17,13 @@ def generate_embedding(text):
     )
 
     return embedding.tolist()
+
+def generate_embeddings(
+    chunks
+):
+    embeddings = model.encode(
+        chunks,
+        normalize_embeddings=True
+    )
+
+    return embeddings.tolist()

@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 
 from services.json_service import load_parsed_data
 from services.embedding_service import generate_embedding
-from services.chroma_service import search_similar
+from services.chroma_service import search_similar_chunks
 from services.json_service import load_parsed_data
 
 router = APIRouter(
@@ -52,8 +52,6 @@ def similar_papers(
         text
     )
 
-    results = search_similar(
+    return search_similar_chunks(
         embedding
     )
-
-    return results
