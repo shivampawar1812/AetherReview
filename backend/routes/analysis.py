@@ -6,6 +6,8 @@ from services.chroma_service import search_similar_chunks
 from services.json_service import load_parsed_data
 from services.semantic_scholar import search_papers
 from services.json_service import load_parsed_data
+from services.embedding_service import generate_embedding
+from services.similarity_service import rank_papers
 
 router = APIRouter(
     prefix="/analysis",
@@ -59,15 +61,10 @@ def similar_papers(
     )
 
 
-@router.get(
-    "/{paper_id}/literature"
-)
-def literature_search(
-    paper_id: str
-):
-    paper = load_parsed_data(
-        paper_id
-    )
+@router.get("/{paper_id}/literature")
+def literature_search(paper_id: str):
+
+    paper = load_parsed_data(paper_id)
 
     if not paper:
         raise HTTPException(
@@ -77,15 +74,48 @@ def literature_search(
 
     query = paper["title"]
 
-    papers = search_papers(
-        query=query,
-        limit=5
+    print("\n===== QUERY =====")
+    print(query)
+
+    uploaded_text = (
+        paper["abstract"]
+        + "\n"
+        + paper["conclusion"]
     )
+
+    uploaded_embedding = generate_embedding(
+        uploaded_text
+    )
+
+    result = search_papers(
+        query=query,
+        limit=10
+    )
+
+    print("\n===== SEARCH RESULT =====")
+    print(result)
+
+    if "error" in result:
+        return {
+            "query": query,
+            "error": result["error"],
+            "similar_papers": []
+        }
+
+    ranked = rank_papers(
+        uploaded_embedding,
+        result["papers"],
+        generate_embedding
+    )
+
+    print("\n===== RANKED PAPERS =====")
+    print(ranked)
 
     return {
         "query": query,
-        "papers": papers
+        "similar_papers": ranked[:5]
     }
+    
 
 def format_papers(
     papers
@@ -120,7 +150,3 @@ def format_papers(
         )
 
     return formatted
-
-    papers = format_papers(
-    papers
-    )
