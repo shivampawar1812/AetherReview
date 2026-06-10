@@ -29,7 +29,8 @@ def analyze_novelty(
             2. Identify its key contributions.
             3. Identify potential research gaps.
             4. Suggest future work.
-            5. Assign a novelty score from 1–10.
+            5. Assign a novelty score from 1–10.If no similar papers are available,estimate novelty using only the uploaded paper and explicitly mention that the score is not literature-grounded.
+
 
             Return STRICT JSON:
 

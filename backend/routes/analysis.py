@@ -4,11 +4,12 @@ from services.json_service import load_parsed_data
 from services.embedding_service import generate_embedding
 from services.chroma_service import search_similar_chunks
 from services.json_service import load_parsed_data
-from services.semantic_scholar import search_papers
+from services.openalex import search_papers
 from services.json_service import load_parsed_data
 from services.embedding_service import generate_embedding
 from services.similarity_service import rank_papers
 from services.llm_service import analyze_novelty
+from services.query_service import generate_search_query
 
 router = APIRouter(
     prefix="/analysis",
@@ -73,7 +74,13 @@ def literature_search(paper_id: str):
             detail="Paper not found"
         )
 
-    query = paper["title"]
+    keywords = generate_search_query(
+        paper["title"],
+        paper["abstract"],
+        paper["conclusion"]
+    )
+
+    query = " ".join(keywords)
 
     print("\n===== QUERY =====")
     print(query)
@@ -114,6 +121,9 @@ def literature_search(paper_id: str):
 
     return {
         "query": query,
+
+        "keywords": keywords,
+
         "similar_papers": ranked[:5]
     }
     
@@ -134,6 +144,14 @@ def novelty_analysis(
     similar_response = literature_search(
         paper_id
     )
+
+    retrieval_metadata = {
+        "keywords":
+            similar_response.get(
+                "keywords",
+                []
+            )
+    }
     
     similar_papers = (similar_response.get("similar_papers", []))
 
@@ -188,3 +206,54 @@ def format_papers(
         )
 
     return formatted
+
+
+@router.get("/{paper_id}/report")
+def generate_report(
+    paper_id: str
+):
+    paper = load_parsed_data(
+        paper_id
+    )
+
+    if not paper:
+        raise HTTPException(
+            status_code=404,
+            detail="Paper not found"
+        )
+    similar_response = literature_search(
+        paper_id
+    )
+
+    retrieval_metadata = {
+        "keywords":
+            similar_response.get(
+                "keywords",
+                []
+            )
+    }
+    novelty_response = novelty_analysis(
+        paper_id
+    )
+
+    return {
+        "paper_id": paper_id,
+
+        "paper_info": {
+            "title": paper.get("title"),
+            "abstract": paper.get("abstract"),
+            "conclusion": paper.get("conclusion")
+        },
+
+        "retrieval_metadata":
+            retrieval_metadata,
+
+        "similar_papers":
+            similar_response.get(
+                "similar_papers",
+                []
+            ),
+
+        "novelty_analysis":
+            novelty_response
+    }
