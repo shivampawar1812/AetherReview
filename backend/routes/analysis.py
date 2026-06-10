@@ -8,6 +8,7 @@ from services.semantic_scholar import search_papers
 from services.json_service import load_parsed_data
 from services.embedding_service import generate_embedding
 from services.similarity_service import rank_papers
+from services.llm_service import analyze_novelty
 
 router = APIRouter(
     prefix="/analysis",
@@ -116,6 +117,43 @@ def literature_search(paper_id: str):
         "similar_papers": ranked[:5]
     }
     
+@router.get("/{paper_id}/novelty")
+def novelty_analysis(
+    paper_id: str
+):
+    paper = load_parsed_data(
+        paper_id
+    )
+
+    if not paper:
+        raise HTTPException(
+            status_code=404,
+            detail="Paper not found"
+        )
+    
+    similar_response = literature_search(
+        paper_id
+    )
+    
+    similar_papers = (similar_response.get("similar_papers", []))
+
+    result = analyze_novelty(
+        uploaded_paper={
+            "title":
+                paper["title"],
+
+            "abstract":
+                paper["abstract"],
+
+            "conclusion":
+                paper["conclusion"]
+        },
+
+        similar_papers=similar_papers
+    )
+
+    return result
+
 
 def format_papers(
     papers
