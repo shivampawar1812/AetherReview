@@ -2,54 +2,50 @@
 
 > **AI-Powered Research Novelty & Literature Intelligence Platform**
 
-AetherReview is an end-to-end AI system that helps researchers evaluate the novelty of academic work using Retrieval-Augmented Generation (RAG), semantic similarity search, and LLM-powered reasoning.
+AetherReview is an end-to-end AI system that helps researchers evaluate the novelty of academic work using Retrieval-Augmented Generation (RAG), semantic similarity search, literature-grounded reasoning, and Large Language Models.
 
-Upload a research paper and receive a comprehensive novelty report containing paper summaries, related literature, similarity rankings, key contributions, research gaps, future research directions, and an estimated novelty score.
+Upload a research paper and receive a comprehensive novelty report containing summaries, related literature, similarity rankings, contributions, research gaps, future research directions, and an estimated novelty score.
 
 ---
 
 ## 🚀 Features
 
-### 📄 Research Paper Upload & Processing
+### 📄 Research Paper Analysis
 
 * Upload academic research papers in PDF format.
-* Automatic extraction of structured sections including title, abstract, body, and conclusion.
-* Persistent storage of parsed paper metadata.
-
-### 🧩 Document Intelligence Pipeline
-
-* Chunk-based document processing for improved retrieval quality.
-* Batch embedding generation using state-of-the-art transformer models.
-* Local persistence of embeddings for efficient reuse.
+* Automatic extraction of title, abstract, and conclusion.
+* Persistent storage of parsed papers for downstream analysis.
 
 ### 🔍 Literature Discovery
 
-* Retrieval of related academic papers through Semantic Scholar.
-* Candidate literature generation from external research corpora.
-* Resilient API integration with graceful error handling.
+* Retrieval of related academic papers using OpenAlex.
+* LLM-assisted query reformulation for improved literature search.
+* Similarity-based ranking of retrieved works.
 
-### 📊 Semantic Similarity Analysis
+### 🧠 Literature-Grounded Novelty Analysis
 
-* Embedding-based similarity computation using cosine similarity.
-* Ranking of retrieved literature by relevance.
-* Identification of the most closely related research works.
+Generate structured reports containing:
 
-### 🧠 AI-Powered Novelty Analysis
+* Executive summaries
+* Key contributions
+* Research gaps
+* Future research suggestions
+* Novelty scores informed by retrieved literature
 
-Generate structured novelty reports containing:
+### 📊 Similarity Ranking
 
-* Executive summary of the uploaded paper.
-* Key contributions and innovations.
-* Potential research gaps and limitations.
-* Suggested future research directions.
-* Estimated novelty score (1–10).
+* Embedding-based similarity computation.
+* Cosine similarity ranking.
+* Identification of closely related work.
 
-### 📈 Research Intelligence Dashboard *(Frontend Planned)*
+### 📑 Unified Research Reports
 
-* Interactive analysis reports.
-* Similarity visualizations.
-* PDF viewing experience.
-* Citation relationship exploration.
+Single endpoint providing:
+
+* Paper metadata
+* Retrieval metadata
+* Similar papers
+* Novelty analysis
 
 ---
 
@@ -71,7 +67,10 @@ Embedding Generation (BGE)
 ChromaDB Vector Store
         │
         ▼
-Literature Retrieval
+LLM Query Reformulation
+        │
+        ▼
+OpenAlex Literature Retrieval
         │
         ▼
 Similarity Ranking
@@ -80,7 +79,7 @@ Similarity Ranking
 LLM-Based Comparative Analysis
         │
         ▼
-Novelty Assessment Report
+Unified Novelty Report
 ```
 
 ---
@@ -92,12 +91,16 @@ Novelty Assessment Report
 * FastAPI
 * Python
 
-### AI & Retrieval
+### Retrieval & Vector Search
+
+* OpenAlex API
+* ChromaDB
+* Cosine Similarity
+
+### AI & NLP
 
 * Sentence Transformers
 * BAAI/bge-small-en-v1.5
-* ChromaDB
-* Cosine Similarity Ranking
 * Retrieval-Augmented Generation (RAG)
 
 ### LLM Reasoning
@@ -109,21 +112,12 @@ Novelty Assessment Report
 
 * PyMuPDF
 
-### Academic Retrieval
-
-* Semantic Scholar API
-
-### Frontend *(Upcoming)*
+### Frontend *(Planned)*
 
 * Next.js 15
 * React
 * Tailwind CSS
 * TypeScript
-
-### Deployment *(Planned)*
-
-* Vercel
-* Render
 
 ---
 
@@ -135,12 +129,11 @@ AetherReview/
 ├── backend/
 │   ├── routes/
 │   ├── services/
-│   ├── uploads/
+│   ├── parsed/
 │   ├── chromadb/
-│   ├── papers/
 │   └── app.py
 │
-├── frontend/                # Planned
+├── frontend/            # Upcoming
 │
 ├── README.md
 └── requirements.txt
@@ -152,26 +145,28 @@ AetherReview/
 
 ```json
 {
-  "summary": "CLEAR-AI proposes a clinically aligned explainable framework for asthma risk prediction.",
+  "retrieval_metadata": {
+    "keywords": [
+      "asthma risk prediction",
+      "explainable AI in healthcare",
+      "SHAP-LIME integration"
+    ]
+  },
 
-  "contributions": [
-    "Introduces the CLEAR-AI framework",
-    "Integrates SHAP, LIME, and LLM reasoning",
-    "Develops the Fidelity-Entropy Evaluation Matrix (FEEM)"
+  "similar_papers": [
+    {
+      "title": "A Survey on Explainable Artificial Intelligence (XAI): Toward Medical XAI",
+      "similarity": 80.31
+    }
   ],
 
-  "research_gaps": [
-    "Limited external clinical validation",
-    "Need for clinician feedback"
-  ],
-
-  "future_work": [
-    "Cross-hospital deployment",
-    "Longitudinal monitoring",
-    "Lightweight offline implementations"
-  ],
-
-  "novelty_score": 8
+  "novelty_analysis": {
+    "summary": "...",
+    "contributions": [...],
+    "research_gaps": [...],
+    "future_work": [...],
+    "novelty_score": 8
+  }
 }
 ```
 
@@ -179,43 +174,32 @@ AetherReview/
 
 ## 🎯 Current Status
 
-### ✅ Backend MVP Completed
+### ✅ Backend v1.0 Completed
 
 Implemented:
 
 * [x] PDF Upload System
 * [x] PDF Parsing Pipeline
 * [x] Structured JSON Persistence
-* [x] Chunk-Based Processing
+* [x] Chunk Generation
 * [x] Embedding Generation
 * [x] ChromaDB Integration
-* [x] Semantic Scholar Retrieval
+* [x] OpenAlex Literature Retrieval
+* [x] LLM Query Reformulation
 * [x] Similarity Ranking Engine
-* [x] LLM-Powered Novelty Analysis
+* [x] Literature-Grounded Novelty Analysis
 * [x] Contribution Extraction
 * [x] Research Gap Identification
 * [x] Future Work Suggestions
-* [x] Novelty Score Generation
+* [x] Unified Report Endpoint
 
-### 🚧 In Progress
+### 🚧 Next Phase
 
 * [ ] Next.js Frontend
 * [ ] Interactive Dashboard
-* [ ] PDF Viewer Integration
+* [ ] PDF Viewer
+* [ ] Report Export
 * [ ] Deployment
-
----
-
-## 🔮 Future Enhancements
-
-* Citation Graph Visualization
-* Multi-Paper Comparison
-* Automated Literature Review Generation
-* Research Trend Analysis
-* Knowledge Graph Construction
-* Research Idea Validation
-* Citation Recommendation Engine
-* Multi-Agent Research Assistant
 
 ---
 
@@ -227,7 +211,7 @@ Assess novelty before manuscript submission.
 
 ### Students
 
-Accelerate literature review and related work exploration.
+Accelerate literature reviews and related work exploration.
 
 ### Innovators
 
@@ -235,18 +219,29 @@ Validate research-driven startup ideas.
 
 ### Academic Institutions
 
-Support research discovery and evidence-based decision-making.
+Support evidence-based research discovery.
 
 ---
 
 ## 📜 Disclaimer
 
-Novelty scores generated by AetherReview are intended to assist researchers and should not be considered a substitute for formal peer review. The platform provides literature-grounded insights to support research evaluation and idea exploration.
+AetherReview provides literature-grounded insights to assist researchers. Novelty scores are intended as decision-support signals and should not replace formal peer review.
 
 ---
 
 ## 🌟 Vision
 
-**AetherReview aims to become an AI research companion that transforms weeks of literature exploration into minutes of actionable intelligence.**
+**Transform weeks of literature exploration into minutes of actionable intelligence.**
 
 > *Illuminating Research Through AI-Powered Novelty Intelligence.*
+
+---
+
+## 👨‍💻 Author
+
+**Shivam Pawar**
+
+Built with the vision of transforming weeks of literature exploration into minutes of actionable intelligence through AI-powered research analysis.
+
+**AetherReview — Illuminating Research Through AI-Powered Novelty Intelligence.**
+---
