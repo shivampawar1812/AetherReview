@@ -1,19 +1,13 @@
-import UploadForm from "@/components/UploadForm";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
 
 export default function Home() {
     return (
-        <main className="min-h-screen flex flex-col items-center justify-center p-6">
+        <main className="bg-black min-h-screen text-white overflow-hidden">
 
-            <h1 className="text-5xl font-bold">
-                AetherSense
-            </h1>
+            <Navbar />
 
-            <p className="mt-4 text-gray-500 text-center max-w-xl">
-                Upload a research paper and receive
-                literature-grounded novelty analysis.
-            </p>
-
-            <UploadForm />
+            <Hero />
 
         </main>
     );

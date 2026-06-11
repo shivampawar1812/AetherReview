@@ -1,4 +1,5 @@
 import { getReport } from "@/lib/api";
+import ReportCard from "@/components/ReportCard";
 
 export default async function ReportPage(
     {
@@ -18,38 +19,109 @@ export default async function ReportPage(
 
     return (
 
-        <main className="max-w-5xl mx-auto p-8 space-y-10">
+        <main className="max-w-6xlmx-autop-8space-y-8">
 
-            <h1 className="text-4xl font-bold">
+            <h1 className="
+                text-5xl
+                font-bold
+            ">
                 AetherSense Report
             </h1>
 
-            <section>
-                <h2 className="text-2xl font-semibold">
-                    Paper
-                </h2>
 
-                <p className="mt-2">
+            <p className="
+                text-gray-500
+            ">
+                Literature-grounded novelty analysis
+            </p>
+
+            <ReportCard title="Paper">
+                <p>
                     {report.paper_info.title}
                 </p>
-            </section>
+            </ReportCard>
 
-            <section>
-                <h2 className="text-2xl font-semibold">
-                    Novelty Score
-                </h2>
+            <ReportCard title="Novelty Score">
 
-                <p className="text-5xl font-bold mt-2">
+                <div className="
+                    text-6xl
+                    font-bold
+                    text-blue-600
+                ">
                     {report.novelty_analysis.novelty_score}/10
-                </p>
-            </section>
+                </div>
 
-            <section>
-                <h2 className="text-2xl font-semibold">
-                    Contributions
-                </h2>
+            </ReportCard>
 
-                <ul className="list-disc ml-6 mt-3 space-y-2">
+            <ReportCard title="Similar Papers">
+
+                <div className="space-y-4">
+
+                    {report.similar_papers.map(
+                        (
+                            paper: any,
+                            index: number
+                        ) => (
+
+                            <div
+                                key={index}
+                                className="
+                                    border
+                                    rounded-xl
+                                    p-4
+                                "
+                            >
+
+                                <h3 className="font-semibold">
+
+                                    {paper.title}
+
+                                </h3>
+
+                                <div className="
+                                    flex
+                                    gap-6
+                                    mt-2
+                                    text-sm
+                                    text-gray-500
+                                ">
+
+                                    <span>
+                                        Similarity:
+                                        {" "}
+                                        {paper.similarity}%
+                                    </span>
+
+                                    <span>
+                                        Citations:
+                                        {" "}
+                                        {paper.citations}
+                                    </span>
+
+                                    <span>
+                                        Year:
+                                        {" "}
+                                        {paper.year}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        )
+                    )}
+
+                </div>
+
+            </ReportCard>
+
+            <ReportCard title="Contributions">
+
+                <ul className="
+                    list-disc
+                    ml-6
+                    space-y-3
+                ">
 
                     {report.novelty_analysis.contributions.map(
                         (
@@ -65,14 +137,16 @@ export default async function ReportPage(
                     )}
 
                 </ul>
-            </section>
 
-            <section>
-                <h2 className="text-2xl font-semibold">
-                    Research Gaps
-                </h2>
+            </ReportCard>
 
-                <ul className="list-disc ml-6 mt-3 space-y-2">
+            <ReportCard title="Research Gaps">
+
+                <ul className="
+                    list-disc
+                    ml-6
+                    space-y-3
+                ">
 
                     {report.novelty_analysis.research_gaps.map(
                         (
@@ -88,14 +162,16 @@ export default async function ReportPage(
                     )}
 
                 </ul>
-            </section>
 
-            <section>
-                <h2 className="text-2xl font-semibold">
-                    Future Work
-                </h2>
+            </ReportCard>
 
-                <ul className="list-disc ml-6 mt-3 space-y-2">
+            <ReportCard title="Future Work">
+
+                <ul className="
+                    list-disc
+                    ml-6
+                    space-y-3
+                ">
 
                     {report.novelty_analysis.future_work.map(
                         (
@@ -111,52 +187,10 @@ export default async function ReportPage(
                     )}
 
                 </ul>
-            </section>
 
-            <section>
+            </ReportCard>
 
-                <h2 className="text-2xl font-semibold">
-                    Similar Papers
-                </h2>
-
-                <div className="mt-4 space-y-4">
-
-                    {report.similar_papers.map(
-                        (
-                            paper: any,
-                            index: number
-                        ) => (
-
-                            <div
-                                key={index}
-                                className="border rounded-lg p-4"
-                            >
-
-                                <h3 className="font-semibold">
-                                    {paper.title}
-                                </h3>
-
-                                <p>
-                                    Similarity:
-                                    {" "}
-                                    {paper.similarity}%
-                                </p>
-
-                                <p>
-                                    Citations:
-                                    {" "}
-                                    {paper.citations}
-                                </p>
-
-                            </div>
-
-                        )
-                    )}
-
-                </div>
-
-            </section>
-
+            
         </main>
     );
 }
