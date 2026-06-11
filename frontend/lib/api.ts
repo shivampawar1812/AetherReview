@@ -15,3 +15,23 @@ export async function uploadPaper(file: File) {
 
     return response.json();
 }
+
+
+export async function getReport(
+    paperId: string
+) {
+    const response = await fetch(
+        `${API_BASE}/analysis/${paperId}/report`,
+        {
+            cache: "no-store",
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error(
+            "Failed to fetch report"
+        );
+    }
+
+    return response.json();
+}
