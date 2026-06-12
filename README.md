@@ -1,51 +1,58 @@
 # AetherSense
 
-> **AI-Powered Research Novelty & Literature Intelligence Platform**
+> **Discover What's Truly Novel.**
+>
+> Literature-grounded AI that transforms research papers into actionable novelty intelligence.
 
-AetherSense is an end-to-end AI system that helps researchers evaluate the novelty of academic work using Retrieval-Augmented Generation (RAG), semantic similarity search, literature-grounded reasoning, and Large Language Models.
+AetherSense is an end-to-end AI platform that helps researchers evaluate the novelty of academic work using Retrieval-Augmented Generation (RAG), semantic similarity search, literature-grounded reasoning, and Large Language Models.
 
-Upload a research paper and receive a comprehensive novelty report containing summaries, related literature, similarity rankings, contributions, research gaps, future research directions, and an estimated novelty score.
+Upload a research paper and receive a comprehensive intelligence report containing executive summaries, related literature, similarity rankings, key contributions, research gaps, future research directions, and an estimated novelty score.
+
+---
+
+## ✨ Preview
+
+### Landing Experience
+
+> ![Landing](assets/Landing.png)
+
+### Intelligence Report
+
+> ![Report](assets/Report.png)
 
 ---
 
 ## 🚀 Features
 
-### 📄 Research Paper Analysis
+### 📄 Intelligent PDF Analysis
 
-* Upload academic research papers in PDF format.
-* Automatic extraction of title, abstract, and conclusion.
-* Persistent storage of parsed papers for downstream analysis.
+- Upload academic papers in PDF format.
+- Automatic extraction of titles, abstracts, and conclusions.
+- Persistent parsing and structured storage.
 
-### 🔍 Literature Discovery
+### 🔍 Literature Intelligence
 
-* Retrieval of related academic papers using OpenAlex.
-* LLM-assisted query reformulation for improved literature search.
-* Similarity-based ranking of retrieved works.
+- Retrieval of semantically related papers using OpenAlex.
+- Embedding-based similarity ranking.
+- Literature-grounded evidence discovery.
 
-### 🧠 Literature-Grounded Novelty Analysis
+### 🧠 Novelty Intelligence Engine
 
-Generate structured reports containing:
+Generate executive reports containing:
 
-* Executive summaries
-* Key contributions
-* Research gaps
-* Future research suggestions
-* Novelty scores informed by retrieved literature
+- Executive summaries
+- Novelty scores
+- Key contributions
+- Research gaps
+- Future research directions
+- Related literature insights
 
-### 📊 Similarity Ranking
+### ⚡ Modern Intelligence Dashboard
 
-* Embedding-based similarity computation.
-* Cosine similarity ranking.
-* Identification of closely related work.
-
-### 📑 Unified Research Reports
-
-Single endpoint providing:
-
-* Paper metadata
-* Retrieval metadata
-* Similar papers
-* Novelty analysis
+- Premium dark-mode interface.
+- Interactive report experience.
+- Research-focused visual presentation.
+- Responsive Next.js frontend.
 
 ---
 
@@ -55,13 +62,13 @@ Single endpoint providing:
 Research Paper (PDF)
         │
         ▼
-PDF Parsing & Section Extraction
+PDF Parsing & Metadata Extraction
         │
         ▼
 Chunk Generation
         │
         ▼
-Embedding Generation (BGE)
+BGE Embedding Generation
         │
         ▼
 ChromaDB Vector Store
@@ -73,51 +80,54 @@ LLM Query Reformulation
 OpenAlex Literature Retrieval
         │
         ▼
-Similarity Ranking
+Semantic Similarity Ranking
         │
         ▼
-LLM-Based Comparative Analysis
+Groq LLM Reasoning
         │
         ▼
-Unified Novelty Report
+Novelty Intelligence Engine
+        │
+        ▼
+Premium Interactive Report
 ```
 
 ---
 
 ## ⚙️ Tech Stack
 
+### Frontend
+
+- Next.js 15
+- React
+- TypeScript
+- Tailwind CSS
+
 ### Backend
 
-* FastAPI
-* Python
+- FastAPI
+- Python
 
 ### Retrieval & Vector Search
 
-* OpenAlex API
-* ChromaDB
-* Cosine Similarity
+- ChromaDB
+- OpenAlex API
+- Cosine Similarity
 
 ### AI & NLP
 
-* Sentence Transformers
-* BAAI/bge-small-en-v1.5
-* Retrieval-Augmented Generation (RAG)
+- Sentence Transformers
+- BAAI/bge-small-en-v1.5
+- Retrieval-Augmented Generation (RAG)
 
 ### LLM Reasoning
 
-* Groq API
-* Llama 3.3 70B
+- Groq API
+- Llama 3.3 70B
 
 ### Document Processing
 
-* PyMuPDF
-
-### Frontend *(Planned)*
-
-* Next.js 15
-* React
-* Tailwind CSS
-* TypeScript
+- PyMuPDF
 
 ---
 
@@ -133,7 +143,12 @@ AetherSense/
 │   ├── chromadb/
 │   └── app.py
 │
-├── frontend/            # Upcoming
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── public/
+│   └── package.json
 │
 ├── README.md
 └── requirements.txt
@@ -152,14 +167,12 @@ AetherSense/
       "SHAP-LIME integration"
     ]
   },
-
   "similar_papers": [
     {
       "title": "A Survey on Explainable Artificial Intelligence (XAI): Toward Medical XAI",
       "similarity": 80.31
     }
   ],
-
   "novelty_analysis": {
     "summary": "...",
     "contributions": [...],
@@ -174,32 +187,39 @@ AetherSense/
 
 ## 🎯 Current Status
 
-### ✅ Backend v1.0 Completed
+### ✅ AetherSense MVP Completed
 
 Implemented:
 
-* [x] PDF Upload System
-* [x] PDF Parsing Pipeline
-* [x] Structured JSON Persistence
-* [x] Chunk Generation
-* [x] Embedding Generation
-* [x] ChromaDB Integration
-* [x] OpenAlex Literature Retrieval
-* [x] LLM Query Reformulation
-* [x] Similarity Ranking Engine
-* [x] Literature-Grounded Novelty Analysis
-* [x] Contribution Extraction
-* [x] Research Gap Identification
-* [x] Future Work Suggestions
-* [x] Unified Report Endpoint
+- [x] Premium Next.js Landing Page
+- [x] PDF Upload Pipeline
+- [x] PDF Parsing & Metadata Extraction
+- [x] Chunk Generation
+- [x] BGE Embedding Generation
+- [x] ChromaDB Integration
+- [x] OpenAlex Literature Retrieval
+- [x] LLM Query Reformulation
+- [x] Similarity Ranking Engine
+- [x] Literature-Grounded Novelty Analysis
+- [x] Executive Summary Generation
+- [x] Contribution Extraction
+- [x] Research Gap Identification
+- [x] Future Direction Suggestions
+- [x] Novelty Score Generation
+- [x] Interactive Intelligence Report
 
-### 🚧 Next Phase
+---
 
-* [ ] Next.js Frontend
-* [ ] Interactive Dashboard
-* [ ] PDF Viewer
-* [ ] Report Export
-* [ ] Deployment
+## 🚀 Upcoming Enhancements
+
+- [ ] PDF Viewer Integration
+- [ ] Report Export (PDF)
+- [ ] Citation Network Visualization
+- [ ] Multi-Paper Comparison
+- [ ] Literature Trend Analysis
+- [ ] Research Idea Validation
+- [ ] Knowledge Graph Generation
+- [ ] Deployment on Vercel and Render
 
 ---
 
@@ -207,7 +227,7 @@ Implemented:
 
 ### Researchers
 
-Assess novelty before manuscript submission.
+Assess novelty before manuscript submission and identify overlooked literature.
 
 ### Students
 
@@ -215,11 +235,11 @@ Accelerate literature reviews and related work exploration.
 
 ### Innovators
 
-Validate research-driven startup ideas.
+Validate research-driven startup ideas using evidence from existing work.
 
 ### Academic Institutions
 
-Support evidence-based research discovery.
+Support evidence-based research discovery and decision-making.
 
 ---
 
@@ -231,9 +251,9 @@ AetherSense provides literature-grounded insights to assist researchers. Novelty
 
 ## 🌟 Vision
 
-**Transform weeks of literature exploration into minutes of actionable intelligence.**
+Transform weeks of literature exploration into minutes of actionable intelligence.
 
-> *Illuminating Research Through AI-Powered Novelty Intelligence.*
+AetherSense empowers researchers to identify novelty, uncover hidden connections, and accelerate scientific discovery through literature-grounded AI.
 
 ---
 
@@ -243,5 +263,6 @@ AetherSense provides literature-grounded insights to assist researchers. Novelty
 
 Built with the vision of transforming weeks of literature exploration into minutes of actionable intelligence through AI-powered research analysis.
 
-**AetherSense — Illuminating Research Through AI-Powered Novelty Intelligence.**
 ---
+
+> **AetherSense — Discover What's Truly Novel.**
