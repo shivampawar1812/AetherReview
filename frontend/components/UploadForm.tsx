@@ -184,7 +184,7 @@ export default function UploadForm() {
                                 mb-4
                             "
                         >
-                            PDF only • Up to 50MB
+                            PDF only • Up to 10 MB
                         </p>
 
                         {/* Hidden Input */}

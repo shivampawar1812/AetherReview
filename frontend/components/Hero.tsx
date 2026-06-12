@@ -82,7 +82,7 @@ export default function Hero() {
                         mt-2.5
                     "
                 >
-                    Discover What's Truly Novel.
+                    <i>Discover What's Truly Novel.</i>
                 </motion.h1>
 
                 <motion.p
@@ -102,13 +102,11 @@ export default function Hero() {
                         text-zinc-350
                         text-0.5xl
                         mt-6
-                        max-w-2xl
+                        max-w-xl
                         mx-auto
                     "
                 >
-                    Upload your research paper and uncover related literature,
-                    research gaps, and novel contributions using AI-powered
-                    literature intelligence.
+                    From papers to possibilities - identify gaps, conncetions, and novel contributions instantly.
                 </motion.p>
 
                 <motion.div

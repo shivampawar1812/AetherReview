@@ -53,7 +53,7 @@ export default function Navbar() {
                 <div className="
                     flex
                     gap-8
-                    text-sm
+                    text-0.7xl
                     text-zinc-300
                 ">
 
